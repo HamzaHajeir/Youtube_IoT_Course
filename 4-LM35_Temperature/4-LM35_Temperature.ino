@@ -1,6 +1,9 @@
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
+
+  Serial.begin(115200);
+  Serial.print("Flash size: ");
+  Serial.println(ESP.getFlashChipSize(), DEC);
 
   pinMode(D1,OUTPUT);
 }
