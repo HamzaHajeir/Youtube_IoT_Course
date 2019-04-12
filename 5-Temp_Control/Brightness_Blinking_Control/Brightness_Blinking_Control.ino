@@ -1,9 +1,6 @@
 void setup() {
   // put your setup code here, to run once:
-
-  Serial.begin(115200);
-  Serial.print("Flash size: ");
-  Serial.println(ESP.getFlashChipSize(), DEC);
+  Serial.begin(9600);
 
   pinMode(D1,OUTPUT);
 }
@@ -17,10 +14,12 @@ void loop() {
   
   Serial.println(temperature);
 
-  if(temperature > 20){
-    digitalWrite(D1,HIGH);
-  }
-  else {
-    digitalWrite(D1,LOW);
-  }
+  int rate =  map(temperature , 28 , 50 , 0 , 1023 );
+  int delays = map(temperature , 28 , 50 , 2000 , 250);
+  
+  analogWrite(D1,rate);
+  delay(delays);
+  analogWrite(D1,0);
+  delay(delays);
+
 }
